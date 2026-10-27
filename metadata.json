@@ -1,0 +1,6 @@
+{
+  "name": "Vende Más",
+  "description": "Vende Más — Catálogos. Identidad oficial de marca, logotipo V+C y suite interactiva de catálogos comerciales.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
