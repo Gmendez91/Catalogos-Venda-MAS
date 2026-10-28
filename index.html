@@ -33,6 +33,61 @@
       font-weight: 900;
       letter-spacing: -0.5px;
     }
+    /* PULSE ANIMATION EFFECTS FOR HIGH CTR */
+    @keyframes pulse-ring {
+      0% {
+        box-shadow: 0 0 0 0 rgba(99, 213, 242, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 12px rgba(99, 213, 242, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(99, 213, 242, 0);
+      }
+    }
+    @keyframes pulse-scale {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.035);
+      }
+    }
+    @keyframes pulse-whatsapp-green {
+      0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 14px rgba(37, 211, 102, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+      }
+    }
+    .pulse-btn {
+      animation: pulse-ring 2.2s infinite cubic-bezier(0.4, 0, 0.6, 1), pulse-scale 2.2s infinite ease-in-out;
+      transition: all 0.25s ease-in-out;
+    }
+    .pulse-btn:hover {
+      animation-play-state: paused;
+      transform: scale(1.06);
+    }
+    .pulse-icon {
+      display: inline-block;
+      animation: pulse-scale 1.6s infinite ease-in-out;
+    }
+    .floating-whatsapp {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 9999;
+      animation: pulse-whatsapp-green 2s infinite cubic-bezier(0.4, 0, 0.6, 1), pulse-scale 2s infinite ease-in-out;
+      transition: all 0.25s ease-in-out;
+    }
+    .floating-whatsapp:hover {
+      animation-play-state: paused;
+      transform: scale(1.08);
+    }
   </style>
 </head>
 <body class="bg-lightGray text-darkGray antialiased">
@@ -61,17 +116,24 @@
       </a>
 
       <!-- NAV LINKS -->
-      <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-deepBlue">
+      <nav class="hidden md:flex items-center gap-7 text-sm font-semibold text-deepBlue">
         <a href="#solucion" class="hover:text-electricCyan transition">¿Por qué V+C?</a>
         <a href="#catalogos" class="hover:text-electricCyan transition">Catálogos Demo</a>
         <a href="#planes" class="hover:text-electricCyan transition">Planes Comerciales</a>
-        <a href="#cotizador" class="hover:text-electricCyan transition">Cotizador Rápido</a>
+        <a href="#testimonios" class="hover:text-electricCyan transition">Testimonios</a>
+        <a href="#faq" class="hover:text-electricCyan transition">Preguntas Frecuentes</a>
       </nav>
 
-      <!-- CTA BUTTON -->
-      <div class="flex items-center gap-3">
-        <a href="https://wa.me/?text=Hola%20Vende%20M%C3%A1s!%20Quisiera%20cotizar%20un%20cat%C3%A1logo%20comercial%20para%20mi%20empresa." target="_blank" class="bg-electricCyan text-deepBlue hover:bg-opacity-90 font-bold px-5 py-2.5 rounded-lg text-sm transition shadow-sm flex items-center gap-2">
-          <i class="fab fa-whatsapp text-lg"></i>
+      <!-- CTA BUTTONS & PORTAL ACCESO -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <button onclick="openClientPortal()" class="flex items-center gap-2 text-xs font-bold text-deepBlue bg-gray-100 hover:bg-gray-200 border border-gray-300 px-3.5 py-2.5 rounded-lg transition shadow-sm">
+          <i class="fas fa-user-circle text-deepBlue text-base"></i>
+          <span class="hidden sm:inline">Portal Clientes</span>
+          <span class="sm:hidden">Ingresar</span>
+        </button>
+
+        <a href="https://wa.me/?text=Hola%20Vende%20M%C3%A1s!%20Quisiera%20cotizar%20un%20cat%C3%A1logo%20comercial%20para%20mi%20empresa." target="_blank" class="pulse-btn bg-electricCyan text-deepBlue hover:bg-opacity-90 font-bold px-4 sm:px-5 py-2.5 rounded-lg text-xs sm:text-sm transition shadow-sm flex items-center gap-2">
+          <i class="fab fa-whatsapp pulse-icon text-base sm:text-lg"></i>
           <span>Pedir Asesoría</span>
         </a>
       </div>
@@ -176,134 +238,237 @@
         <p class="text-gray-600">Así ven y consultan los productos tus clientes: con claridad de precios y botones de pedido directo.</p>
       </div>
 
-      <!-- CATALOG PREVIEW CARDS -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+      <!-- CATALOG PREVIEW CARDS CON IMÁGENES REALES -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
         
         <!-- DEMO 1: GOURMET -->
-        <div class="bg-lightGray rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
-          <div class="bg-deepBlue p-6 text-white flex justify-between items-center">
-            <div>
-              <span class="text-xs text-electricCyan font-bold uppercase tracking-wider">Distribuidora Gourmet del Plata</span>
-              <h3 class="text-xl font-extrabold">Catálogo Alimentos & Delicatessen</h3>
-            </div>
-            <div class="badge-vc px-2.5 py-1 rounded text-white text-sm">V+C</div>
-          </div>
-          <div class="p-6 space-y-4">
-            <div class="bg-white p-4 rounded-xl border border-gray-200 flex justify-between items-center">
-              <div>
-                <span class="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded font-mono font-bold">OLV-EV500</span>
-                <h4 class="font-bold text-deepBlue mt-1">Aceite de Oliva Extra Virgen 500ml</h4>
-                <p class="text-xs text-gray-500">Caja x 12 unidades (Vidrio Oscuro) • Mínimo: 6u</p>
-              </div>
-              <div class="text-right">
-                <div class="text-xs line-through text-gray-400">$14.50</div>
-                <div class="text-lg font-black text-deepBlue">$11.20</div>
-                <span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded">Mayorista</span>
+        <div class="bg-lightGray rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-lg transition flex flex-col justify-between">
+          <div>
+            <!-- Banner Image -->
+            <div class="relative h-48 overflow-hidden bg-deepBlue">
+              <img src="banner_gourmet.jpg" alt="Catálogo Gourmet" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+              <div class="absolute inset-0 bg-gradient-to-t from-deepBlue/90 via-deepBlue/30 to-transparent"></div>
+              <div class="absolute top-3 right-3 badge-vc px-2.5 py-1 rounded text-white text-xs shadow-md">V+C</div>
+              <div class="absolute bottom-3 left-4 right-4 text-white">
+                <span class="text-[10px] text-electricCyan font-bold uppercase tracking-wider">Alimentos & Delicatessen</span>
+                <h3 class="text-lg font-black leading-tight">Distribuidora Del Plata</h3>
               </div>
             </div>
 
-            <div class="bg-white p-4 rounded-xl border border-gray-200 flex justify-between items-center">
-              <div>
-                <span class="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded font-mono font-bold">ACT-MOD250</span>
-                <h4 class="font-bold text-deepBlue mt-1">Aceto Balsámico Módena Reserva 5 Años</h4>
-                <p class="text-xs text-gray-500">Pack exhibidor x 6 botellas 250ml • Mínimo: 6u</p>
+            <!-- Products Preview List -->
+            <div class="p-5 space-y-3">
+              <div class="bg-white p-3 rounded-xl border border-gray-200 flex justify-between items-center text-xs">
+                <div>
+                  <span class="font-mono font-bold text-gray-500">OLV-EV500</span>
+                  <div class="font-bold text-deepBlue">Oliva Extra Virgen 500ml</div>
+                  <div class="text-[10px] text-gray-400">Caja x 12 botellas • Mín. 6u</div>
+                </div>
+                <div class="text-right">
+                  <div class="text-sm font-black text-deepBlue">$ 11.20</div>
+                  <span class="text-[9px] bg-emerald-100 text-emerald-800 font-bold px-1.5 py-0.5 rounded">Mayorista</span>
+                </div>
               </div>
-              <div class="text-right">
-                <div class="text-xs line-through text-gray-400">$18.00</div>
-                <div class="text-lg font-black text-deepBlue">$13.90</div>
-                <span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded">Mayorista</span>
+
+              <div class="bg-white p-3 rounded-xl border border-gray-200 flex justify-between items-center text-xs">
+                <div>
+                  <span class="font-mono font-bold text-gray-500">ACT-MOD250</span>
+                  <div class="font-bold text-deepBlue">Aceto Módena Reserva 5 Años</div>
+                  <div class="text-[10px] text-gray-400">Pack x 6 botellas • Mín. 6u</div>
+                </div>
+                <div class="text-right">
+                  <div class="text-sm font-black text-deepBlue">$ 13.90</div>
+                  <span class="text-[9px] bg-emerald-100 text-emerald-800 font-bold px-1.5 py-0.5 rounded">Mayorista</span>
+                </div>
               </div>
             </div>
+          </div>
+
+          <div class="p-5 pt-0">
+            <a href="https://wa.me/?text=Hola%20Vende%20M%C3%A1s!%20Quisiera%20ver%20el%20cat%C3%A1logo%20completo%20de%20ejemplo%20para%20Alimentos%20Gourmet." target="_blank" class="block text-center w-full bg-deepBlue hover:bg-opacity-95 text-white font-bold py-2.5 rounded-xl text-xs transition">
+              <i class="fab fa-whatsapp text-electricCyan mr-1.5"></i> Ver Catálogo Completo
+            </a>
           </div>
         </div>
 
         <!-- DEMO 2: FERRETERÍA INDUSTRIAL -->
-        <div class="bg-lightGray rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
-          <div class="bg-deepBlue p-6 text-white flex justify-between items-center">
-            <div>
-              <span class="text-xs text-electricCyan font-bold uppercase tracking-wider">Ferretería & Suministros Delta</span>
-              <h3 class="text-xl font-extrabold">Catálogo Maquinaria & Herramientas</h3>
-            </div>
-            <div class="badge-vc px-2.5 py-1 rounded text-white text-sm">V+C</div>
-          </div>
-          <div class="p-6 space-y-4">
-            <div class="bg-white p-4 rounded-xl border border-gray-200 flex justify-between items-center">
-              <div>
-                <span class="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded font-mono font-bold">TLD-BR20V</span>
-                <h4 class="font-bold text-deepBlue mt-1">Taladro Percutor Brushless 20V</h4>
-                <p class="text-xs text-gray-500">Maletín + 2 Baterías 4Ah + Cargador • Mínimo: 4u</p>
-              </div>
-              <div class="text-right">
-                <div class="text-xs line-through text-gray-400">USD 189.00</div>
-                <div class="text-lg font-black text-deepBlue">USD 145.00</div>
-                <span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded">Mayorista</span>
+        <div class="bg-lightGray rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-lg transition flex flex-col justify-between">
+          <div>
+            <!-- Banner Image -->
+            <div class="relative h-48 overflow-hidden bg-deepBlue">
+              <img src="banner_industrial.jpg" alt="Catálogo Industrial" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+              <div class="absolute inset-0 bg-gradient-to-t from-deepBlue/90 via-deepBlue/30 to-transparent"></div>
+              <div class="absolute top-3 right-3 badge-vc px-2.5 py-1 rounded text-white text-xs shadow-md">V+C</div>
+              <div class="absolute bottom-3 left-4 right-4 text-white">
+                <span class="text-[10px] text-electricCyan font-bold uppercase tracking-wider">Ferretería & Construcción</span>
+                <h3 class="text-lg font-black leading-tight">Suministros Delta B2B</h3>
               </div>
             </div>
 
-            <div class="bg-white p-4 rounded-xl border border-gray-200 flex justify-between items-center">
-              <div>
-                <span class="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded font-mono font-bold">LLV-CV12P</span>
-                <h4 class="font-bold text-deepBlue mt-1">Juego de Llaves Combinadas Cr-V (12 pcs)</h4>
-                <p class="text-xs text-gray-500">Caja expositora x 6 sets • Mínimo: 6u</p>
+            <!-- Products Preview List -->
+            <div class="p-5 space-y-3">
+              <div class="bg-white p-3 rounded-xl border border-gray-200 flex justify-between items-center text-xs">
+                <div>
+                  <span class="font-mono font-bold text-gray-500">TLD-BR20V</span>
+                  <div class="font-bold text-deepBlue">Taladro Brushless 20V</div>
+                  <div class="text-[10px] text-gray-400">Maletín + 2 Baterías • Mín. 4u</div>
+                </div>
+                <div class="text-right">
+                  <div class="text-sm font-black text-deepBlue">USD 145.00</div>
+                  <span class="text-[9px] bg-emerald-100 text-emerald-800 font-bold px-1.5 py-0.5 rounded">Mayorista</span>
+                </div>
               </div>
-              <div class="text-right">
-                <div class="text-xs line-through text-gray-400">USD 64.00</div>
-                <div class="text-lg font-black text-deepBlue">USD 48.00</div>
-                <span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded">Mayorista</span>
+
+              <div class="bg-white p-3 rounded-xl border border-gray-200 flex justify-between items-center text-xs">
+                <div>
+                  <span class="font-mono font-bold text-gray-500">LLV-CV12P</span>
+                  <div class="font-bold text-deepBlue">Juego Llaves Cr-V 12pcs</div>
+                  <div class="text-[10px] text-gray-400">Caja expositora x 6 • Mín. 6u</div>
+                </div>
+                <div class="text-right">
+                  <div class="text-sm font-black text-deepBlue">USD 48.00</div>
+                  <span class="text-[9px] bg-emerald-100 text-emerald-800 font-bold px-1.5 py-0.5 rounded">Mayorista</span>
+                </div>
               </div>
             </div>
+          </div>
+
+          <div class="p-5 pt-0">
+            <a href="https://wa.me/?text=Hola%20Vende%20M%C3%A1s!%20Quisiera%20ver%20el%20cat%C3%A1logo%20completo%20de%20ejemplo%20para%20Ferreter%C3%ADa%20Industrial." target="_blank" class="block text-center w-full bg-deepBlue hover:bg-opacity-95 text-white font-bold py-2.5 rounded-xl text-xs transition">
+              <i class="fab fa-whatsapp text-electricCyan mr-1.5"></i> Ver Catálogo Completo
+            </a>
+          </div>
+        </div>
+
+        <!-- DEMO 3: COSMÉTICA & ESTÉTICA -->
+        <div class="bg-lightGray rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-lg transition flex flex-col justify-between">
+          <div>
+            <!-- Banner Image -->
+            <div class="relative h-48 overflow-hidden bg-deepBlue">
+              <img src="banner_cosmetica.jpg" alt="Catálogo Cosmética" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+              <div class="absolute inset-0 bg-gradient-to-t from-deepBlue/90 via-deepBlue/30 to-transparent"></div>
+              <div class="absolute top-3 right-3 badge-vc px-2.5 py-1 rounded text-white text-xs shadow-md">V+C</div>
+              <div class="absolute bottom-3 left-4 right-4 text-white">
+                <span class="text-[10px] text-electricCyan font-bold uppercase tracking-wider">Cosmética & Salones</span>
+                <h3 class="text-lg font-black leading-tight">Viva Naturaleza Pro</h3>
+              </div>
+            </div>
+
+            <!-- Products Preview List -->
+            <div class="p-5 space-y-3">
+              <div class="bg-white p-3 rounded-xl border border-gray-200 flex justify-between items-center text-xs">
+                <div>
+                  <span class="font-mono font-bold text-gray-500">SER-VITC30</span>
+                  <div class="font-bold text-deepBlue">Serum Facial Vitamina C 30ml</div>
+                  <div class="text-[10px] text-gray-400">Pack expositor x 10u • Mín. 10u</div>
+                </div>
+                <div class="text-right">
+                  <div class="text-sm font-black text-deepBlue">$ 8.50</div>
+                  <span class="text-[9px] bg-emerald-100 text-emerald-800 font-bold px-1.5 py-0.5 rounded">Mayorista</span>
+                </div>
+              </div>
+
+              <div class="bg-white p-3 rounded-xl border border-gray-200 flex justify-between items-center text-xs">
+                <div>
+                  <span class="font-mono font-bold text-gray-500">CRM-REGM50</span>
+                  <div class="font-bold text-deepBlue">Crema Regenerativa Noche 50g</div>
+                  <div class="text-[10px] text-gray-400">Caja master x 12u • Mín. 12u</div>
+                </div>
+                <div class="text-right">
+                  <div class="text-sm font-black text-deepBlue">$ 12.00</div>
+                  <span class="text-[9px] bg-emerald-100 text-emerald-800 font-bold px-1.5 py-0.5 rounded">Mayorista</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-5 pt-0">
+            <a href="https://wa.me/?text=Hola%20Vende%20M%C3%A1s!%20Quisiera%20ver%20el%20cat%C3%A1logo%20completo%20de%20ejemplo%20para%20Cosm%C3%A9tica%20y%20Cuidado%20Personal." target="_blank" class="block text-center w-full bg-deepBlue hover:bg-opacity-95 text-white font-bold py-2.5 rounded-xl text-xs transition">
+              <i class="fab fa-whatsapp text-electricCyan mr-1.5"></i> Ver Catálogo Completo
+            </a>
           </div>
         </div>
 
       </div>
 
       <div class="text-center">
-        <a href="https://wa.me/?text=Hola%20Vende%20M%C3%A1s!%20Quisiera%20ver%20una%20demostraci%C3%B3n%20para%20el%20rubro%20de%20mi%20empresa." class="inline-flex items-center gap-2 bg-deepBlue text-white hover:bg-opacity-95 font-bold px-8 py-3.5 rounded-xl transition text-sm">
-          <i class="fab fa-whatsapp text-electricCyan text-lg"></i>
+        <a href="https://wa.me/?text=Hola%20Vende%20M%C3%A1s!%20Quisiera%20ver%20una%20demostraci%C3%B3n%20para%20el%20rubro%20de%20mi%20empresa." class="pulse-btn inline-flex items-center gap-2.5 bg-deepBlue text-white hover:bg-opacity-95 font-bold px-8 py-3.5 rounded-xl transition text-sm shadow-md border border-electricCyan/40">
+          <i class="fab fa-whatsapp pulse-icon text-electricCyan text-xl"></i>
           <span>Solicitar Muestra para tu Rubro</span>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- PLANES COMERCIALES -->
+  <!-- PLANES COMERCIALES CON SELECTOR DE MONEDA Y CALCULADORA -->
   <section id="planes" class="py-16 px-4 max-w-7xl mx-auto">
-    <div class="text-center max-w-3xl mx-auto mb-14">
-      <span class="text-electricCyan font-black uppercase text-xs tracking-wider">Soluciones Integrales</span>
-      <h2 class="text-3xl font-extrabold text-deepBlue mt-2 mb-4">Planes de Diseño y Actualización</h2>
-      <p class="text-gray-600">Servicios llave en mano adaptados a la escala de tu negocio y dinámica de ventas.</p>
+    <div class="text-center max-w-3xl mx-auto mb-10">
+      <span class="text-electricCyan font-black uppercase text-xs tracking-wider">Inversión Clara & Transparente</span>
+      <h2 class="text-3xl font-extrabold text-deepBlue mt-2 mb-3">Planes de Diseño y Actualización</h2>
+      <p class="text-gray-600 text-sm">Servicios llave en mano con tarifas fijas y sin costos ocultos. Diseñados para que recuperes la inversión en tus primeros pedidos.</p>
+      
+      <!-- CURRENCY TOGGLE SWITCHER -->
+      <div class="mt-6 inline-flex p-1 bg-gray-200 rounded-xl border border-gray-300">
+        <button id="btnCurrencyARS" onclick="setCurrency('ARS')" class="px-5 py-2 rounded-lg text-xs font-bold transition bg-deepBlue text-white shadow-sm">
+          $ ARS (Pesos)
+        </button>
+        <button id="btnCurrencyUSD" onclick="setCurrency('USD')" class="px-5 py-2 rounded-lg text-xs font-bold transition text-gray-700 hover:text-deepBlue">
+          USD (Dólares)
+        </button>
+      </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+    <!-- PLAN CARDS GRID -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch mb-14">
       
       <!-- PLAN EXPRESS -->
-      <div class="bg-white rounded-2xl border border-gray-200 p-8 flex flex-col justify-between shadow-sm">
+      <div class="bg-white rounded-2xl border border-gray-200 p-8 flex flex-col justify-between shadow-sm hover:shadow-md transition">
         <div>
           <span class="text-xs font-bold bg-gray-100 text-gray-700 px-3 py-1 rounded-full">Lanzamiento Ágil</span>
-          <h3 class="text-2xl font-black text-deepBlue mt-4 mb-2">Catálogo Express</h3>
-          <p class="text-xs text-gray-500 mb-6">Ideal para comercios minoristas y emprendimientos con catálogo estacional.</p>
+          <h3 class="text-2xl font-black text-deepBlue mt-4 mb-1">Catálogo Express</h3>
+          <p class="text-xs text-gray-500 mb-5">Para comercios minoristas y emprendimientos con catálogo estacional.</p>
+          
+          <!-- Price Display -->
+          <div class="mb-6 p-4 rounded-xl bg-gray-50 border border-gray-100">
+            <div class="flex items-baseline gap-1">
+              <span id="priceExpress" class="text-3xl font-black text-deepBlue">$ 45.000</span>
+              <span class="text-xs text-gray-500 font-medium">/ pago único</span>
+            </div>
+            <div class="text-[11px] text-emerald-700 font-semibold mt-1">Entrega lista en 48-72 hs</div>
+          </div>
+
           <ul class="text-sm text-gray-600 space-y-3 mb-8">
             <li><i class="fas fa-check text-electricCyan mr-2"></i> Hasta 50 productos clasificados</li>
             <li><i class="fas fa-check text-electricCyan mr-2"></i> Botón directo de pedido a WhatsApp</li>
             <li><i class="fas fa-check text-electricCyan mr-2"></i> Adaptado 100% a celulares</li>
             <li><i class="fas fa-check text-electricCyan mr-2"></i> PDF liviano de alta legibilidad</li>
-            <li><i class="fas fa-check text-electricCyan mr-2"></i> Entrega en 48-72 hs hábiles</li>
+            <li><i class="fas fa-check text-electricCyan mr-2"></i> Portada personalizada con logo</li>
           </ul>
         </div>
-        <a href="https://wa.me/?text=Hola%20Vende%20M%C3%A1s!%20Quisiera%20cotizar%20el%20Plan%20Cat%C3%A1logo%20Express." class="block text-center w-full bg-lightGray hover:bg-gray-200 text-deepBlue font-bold py-3 rounded-xl transition text-sm">
-          Cotizar Plan Express
+        <a id="linkExpress" href="https://wa.me/?text=Hola%20Vende%20M%C3%A1s!%20Quisiera%20contratar%20el%20Plan%20Cat%C3%A1logo%20Express." target="_blank" class="flex items-center justify-center gap-2 text-center w-full bg-lightGray hover:bg-gray-200 text-deepBlue font-bold py-3.5 rounded-xl transition text-sm">
+          <i class="fab fa-whatsapp text-emerald-600 text-base"></i>
+          <span>Contratar Plan Express</span>
         </a>
       </div>
 
       <!-- PLAN MAYORISTA PRO (HIGHLIGHTED) -->
       <div class="bg-deepBlue text-white rounded-2xl border-2 border-electricCyan p-8 flex flex-col justify-between shadow-xl relative scale-105">
         <div class="absolute -top-3 right-6 bg-electricCyan text-deepBlue font-black text-xs px-4 py-1 rounded-full uppercase tracking-wider">
-          Más Elegido
+          Más Elegido B2B
         </div>
         <div>
-          <span class="text-xs font-bold text-electricCyan tracking-wider uppercase">B2B & Distribución</span>
-          <h3 class="text-2xl font-black text-white mt-4 mb-2">Mayorista Pro</h3>
-          <p class="text-xs text-gray-300 mb-6">Para distribuidoras y mayoristas con escalas de volumen y ventas en calle.</p>
+          <span class="text-xs font-bold text-electricCyan tracking-wider uppercase">Distribución & Mayoristas</span>
+          <h3 class="text-2xl font-black text-white mt-4 mb-1">Mayorista Pro</h3>
+          <p class="text-xs text-gray-300 mb-5">Para distribuidoras, importadoras y mayoristas con escalas de volumen.</p>
+          
+          <!-- Price Display -->
+          <div class="mb-6 p-4 rounded-xl bg-deepBlueSurface border border-electricCyan/30">
+            <div class="flex items-baseline gap-1">
+              <span id="pricePro" class="text-3xl font-black text-electricCyan">$ 95.000</span>
+              <span class="text-xs text-gray-300 font-medium">/ pago único</span>
+            </div>
+            <div class="text-[11px] text-gray-200 font-medium mt-1">Escalas B2B + Fichas técnicas</div>
+          </div>
+
           <ul class="text-sm text-gray-200 space-y-3 mb-8">
             <li><i class="fas fa-check text-electricCyan mr-2"></i> Productos ilimitados con SKUs</li>
             <li><i class="fas fa-check text-electricCyan mr-2"></i> Precios por bulto y escalas mayoristas</li>
@@ -312,26 +477,463 @@
             <li><i class="fas fa-check text-electricCyan mr-2"></i> Estandarización de pedidos para vendedores</li>
           </ul>
         </div>
-        <a href="https://wa.me/?text=Hola%20Vende%20M%C3%A1s!%20Quisiera%20solicitar%20presupuesto%20para%20el%20Plan%20Mayorista%20Pro." class="block text-center w-full bg-electricCyan hover:brightness-105 text-deepBlue font-black py-3.5 rounded-xl transition text-sm shadow-md">
-          Solicitar Propuesta Pro
+        <a id="linkPro" href="https://wa.me/?text=Hola%20Vende%20M%C3%A1s!%20Quisiera%20solicitar%20presupuesto%20para%20el%20Plan%20Mayorista%20Pro." target="_blank" class="pulse-btn flex items-center justify-center gap-2 text-center w-full bg-electricCyan hover:brightness-105 text-deepBlue font-black py-3.5 rounded-xl transition text-sm shadow-md">
+          <i class="fab fa-whatsapp pulse-icon text-lg"></i>
+          <span>Solicitar Propuesta Pro</span>
         </a>
       </div>
 
       <!-- PLAN MANTENIMIENTO -->
-      <div class="bg-white rounded-2xl border border-gray-200 p-8 flex flex-col justify-between shadow-sm">
+      <div class="bg-white rounded-2xl border border-gray-200 p-8 flex flex-col justify-between shadow-sm hover:shadow-md transition">
         <div>
           <span class="text-xs font-bold bg-gray-100 text-gray-700 px-3 py-1 rounded-full">Suscripción Continua</span>
-          <h3 class="text-2xl font-black text-deepBlue mt-4 mb-2">Mantenimiento</h3>
-          <p class="text-xs text-gray-500 mb-6">Tus listas de precios y stock siempre al día sin pérdidas por inflación.</p>
+          <h3 class="text-2xl font-black text-deepBlue mt-4 mb-1">Mantenimiento</h3>
+          <p class="text-xs text-gray-500 mb-5">Tus listas de precios y stock siempre al día sin pérdidas por inflación.</p>
+          
+          <!-- Price Display -->
+          <div class="mb-6 p-4 rounded-xl bg-gray-50 border border-gray-100">
+            <div class="flex items-baseline gap-1">
+              <span id="priceMaint" class="text-3xl font-black text-deepBlue">$ 25.000</span>
+              <span class="text-xs text-gray-500 font-medium">/ mes</span>
+            </div>
+            <div class="text-[11px] text-emerald-700 font-semibold mt-1">Actualizaciones en 24-48 horas</div>
+          </div>
+
           <ul class="text-sm text-gray-600 space-y-3 mb-8">
             <li><i class="fas fa-check text-electricCyan mr-2"></i> Actualizaciones quincenales o mensuales</li>
             <li><i class="fas fa-check text-electricCyan mr-2"></i> Altas inmediatas de nuevos lanzamientos</li>
-            <li><i class="fas fa-check text-electricCyan mr-2"></i> Bajas automáticas de productos discontinuados</li>
-            <li><i class="fas fa-check text-electricCyan mr-2"></i> Soporte y entrega prioritaria por WhatsApp</li>
+            <li><i class="fas fa-check text-electricCyan mr-2"></i> Bajas automáticas de productos agotados</li>
+            <li><i class="fas fa-check text-electricCyan mr-2"></i> Soporte prioritario por WhatsApp</li>
+            <li><i class="fas fa-check text-electricCyan mr-2"></i> Historial de versiones y PDFs listos</li>
           </ul>
         </div>
-        <a href="https://wa.me/?text=Hola%20Vende%20M%C3%A1s!%20Quisiera%20consultar%20por%20el%20servicio%20de%20Mantenimiento%20de%20Cat%C3%A1logos." class="block text-center w-full bg-lightGray hover:bg-gray-200 text-deepBlue font-bold py-3 rounded-xl transition text-sm">
-          Consultar Mantenimiento
+        <a id="linkMaint" href="https://wa.me/?text=Hola%20Vende%20M%C3%A1s!%20Quisiera%20consultar%20por%20el%20servicio%20de%20Mantenimiento%20de%20Cat%C3%A1logos." target="_blank" class="flex items-center justify-center gap-2 text-center w-full bg-lightGray hover:bg-gray-200 text-deepBlue font-bold py-3.5 rounded-xl transition text-sm">
+          <i class="fab fa-whatsapp text-emerald-600 text-base"></i>
+          <span>Contratar Mantenimiento</span>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- CALCULADORA INTERACTIVA DE PRESUPUESTO -->
+    <div class="bg-white rounded-3xl border border-gray-200 p-8 shadow-sm">
+      <div class="max-w-3xl mx-auto">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-10 h-10 rounded-xl bg-deepBlue text-electricCyan flex items-center justify-center text-lg font-bold">
+            <i class="fas fa-calculator"></i>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold text-deepBlue">Calculadora Inmediata de Cotización</h3>
+            <p class="text-xs text-gray-500">Configura tu proyecto y obtén un estimado al instante para tu distribuidora.</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+          <div>
+            <label class="block text-xs font-bold text-gray-700 mb-2">Cantidad de Productos a Publicar:</label>
+            <select id="calcProducts" onchange="calculateBudget()" class="w-full bg-lightGray border border-gray-300 rounded-xl p-3 text-sm font-semibold text-deepBlue focus:outline-none focus:border-electricCyan">
+              <option value="50">Hasta 50 productos (Comercio / Express)</option>
+              <option value="150" selected>50 a 150 productos (Distribuidora Estándar)</option>
+              <option value="300">150 a 300 productos (Mayorista Completo)</option>
+              <option value="600">Más de 300 productos (Gran Distribuidor / Fábrica)</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-gray-700 mb-2">Servicio de Actualización de Precios:</label>
+            <select id="calcMaint" onchange="calculateBudget()" class="w-full bg-lightGray border border-gray-300 rounded-xl p-3 text-sm font-semibold text-deepBlue focus:outline-none focus:border-electricCyan">
+              <option value="monthly" selected>Mantenimiento Mensual (Recomendado)</option>
+              <option value="biweekly">Mantenimiento Quincenal (Alta Rotación)</option>
+              <option value="none">Sin abono (Solo diseño inicial)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Calculated Estimate Result -->
+        <div class="mt-8 p-6 bg-lightGray rounded-2xl border border-gray-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div>
+            <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">Inversión Estimada:</span>
+            <div id="calcResultDisplay" class="text-2xl sm:text-3xl font-black text-deepBlue mt-0.5">$ 95.000 diseño + $ 25.000/mes</div>
+            <p class="text-xs text-gray-500 mt-1">Incluye enlace web interactivo para celular + PDF comercial de alta resolución.</p>
+          </div>
+
+          <a id="calcWhatsAppBtn" href="https://wa.me/?text=Hola%20Vende%20M%C3%A1s!%20Calcul%C3%A9%20un%20presupuesto%20en%20la%20web:%20150%20productos%20con%20mantenimiento%20mensual.%20Quisiera%20iniciar%20el%20proyecto." target="_blank" class="pulse-btn shrink-0 bg-electricCyan text-deepBlue font-black px-6 py-3.5 rounded-xl text-xs sm:text-sm flex items-center gap-2 hover:brightness-105 transition shadow-md">
+            <i class="fab fa-whatsapp pulse-icon text-lg"></i>
+            <span>Pedir Esta Cotización</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIOS DE CLIENTES -->
+  <section id="testimonios" class="py-20 px-4 bg-white border-t border-gray-200">
+    <div class="max-w-7xl mx-auto">
+      
+      <!-- SECTION HEADER -->
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-electricCyan font-black uppercase text-xs tracking-wider bg-deepBlue px-3.5 py-1.5 rounded-full inline-flex items-center gap-2">
+          <i class="fas fa-star text-amber-400"></i> Casos Reales & Confianza
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-deepBlue mt-4 mb-4">Lo que dicen quienes ya venden con nuestro formato</h2>
+        <p class="text-gray-600 text-sm sm:text-base">Distribuidoras, mayoristas y fabricantes que profesionalizaron su canal comercial y agilizaron sus pedidos con Vende Más.</p>
+      </div>
+
+      <!-- TESTIMONIAL CARDS GRID -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+
+        <!-- TESTIMONIO 1: ALIMENTOS & GOURMET -->
+        <div class="bg-lightGray rounded-2xl border border-gray-200 p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition relative group">
+          <div>
+            <!-- Stars & Category -->
+            <div class="flex items-center justify-between mb-4">
+              <div class="text-amber-400 text-xs flex gap-1">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <span class="text-[10px] font-bold bg-white text-deepBlue px-2 py-0.5 rounded border border-gray-200">
+                Alimentos Gourmet
+              </span>
+            </div>
+
+            <!-- Quote Text -->
+            <p class="text-xs sm:text-sm text-gray-700 leading-relaxed italic mb-6">
+              “Antes mandábamos PDFs de 40 MB que los clientes ni descargaban. Con el enlace web de Vende Más, nuestros viajantes muestran aceites y quesos en el celular y los pedidos entran con el SKU y bultos cerrados directo a WhatsApp. Aceleramos las ventas un 40%.”
+            </p>
+          </div>
+
+          <!-- Author Info -->
+          <div class="pt-4 border-t border-gray-200/80 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-deepBlue text-electricCyan font-black text-sm flex items-center justify-center shrink-0">
+              MV
+            </div>
+            <div>
+              <div class="text-xs font-bold text-deepBlue">Martín R. Valenzuela</div>
+              <div class="text-[11px] text-gray-500 font-medium">Socio Gerente • Del Plata Gourmet</div>
+              <div class="text-[10px] text-electricCyan font-semibold">Distribuidora Mayorista</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TESTIMONIO 2: FERRETERÍA INDUSTRIAL -->
+        <div class="bg-lightGray rounded-2xl border border-gray-200 p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition relative group">
+          <div>
+            <!-- Stars & Category -->
+            <div class="flex items-center justify-between mb-4">
+              <div class="text-amber-400 text-xs flex gap-1">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <span class="text-[10px] font-bold bg-white text-deepBlue px-2 py-0.5 rounded border border-gray-200">
+                Ferretería & B2B
+              </span>
+            </div>
+
+            <!-- Quote Text -->
+            <p class="text-xs sm:text-sm text-gray-700 leading-relaxed italic mb-6">
+              “Con la inflación constante, actualizar 800 ítems de herramientas era un dolor de cabeza. El servicio de Mantenimiento de Vende Más nos actualiza las listas en 24 horas y nunca más vendimos a pérdida por precios desactualizados. Son un socio estratégico.”
+            </p>
+          </div>
+
+          <!-- Author Info -->
+          <div class="pt-4 border-t border-gray-200/80 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-deepBlue text-electricCyan font-black text-sm flex items-center justify-center shrink-0">
+              CM
+            </div>
+            <div>
+              <div class="text-xs font-bold text-deepBlue">Ing. Claudio B. Morales</div>
+              <div class="text-[11px] text-gray-500 font-medium">Director Comercial • Suministros Delta</div>
+              <div class="text-[10px] text-electricCyan font-semibold">Mayorista Industrial</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TESTIMONIO 3: COSMÉTICA & ESTÉTICA -->
+        <div class="bg-lightGray rounded-2xl border border-gray-200 p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition relative group">
+          <div>
+            <!-- Stars & Category -->
+            <div class="flex items-center justify-between mb-4">
+              <div class="text-amber-400 text-xs flex gap-1">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <span class="text-[10px] font-bold bg-white text-deepBlue px-2 py-0.5 rounded border border-gray-200">
+                Cosmética & Salones
+              </span>
+            </div>
+
+            <!-- Quote Text -->
+            <p class="text-xs sm:text-sm text-gray-700 leading-relaxed italic mb-6">
+              “La identidad visual V+C y la forma en que estructuran el precio minorista vs. mayorista permitió que los salones y revendedoras entendieran sus márgenes al instante sin consultarnos uno por uno. El eslogan 'Tus productos, mejor presentados' se nota en cada página.”
+            </p>
+          </div>
+
+          <!-- Author Info -->
+          <div class="pt-4 border-t border-gray-200/80 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-deepBlue text-electricCyan font-black text-sm flex items-center justify-center shrink-0">
+              VF
+            </div>
+            <div>
+              <div class="text-xs font-bold text-deepBlue">Valeria S. Fassi</div>
+              <div class="text-[11px] text-gray-500 font-medium">Fundadora • Viva Naturaleza Pro</div>
+              <div class="text-[10px] text-electricCyan font-semibold">Cosmética & Cuidado Personal</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TESTIMONIO 4: TEXTIL & INDUMENTARIA -->
+        <div class="bg-lightGray rounded-2xl border border-gray-200 p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition relative group">
+          <div>
+            <!-- Stars & Category -->
+            <div class="flex items-center justify-between mb-4">
+              <div class="text-amber-400 text-xs flex gap-1">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <span class="text-[10px] font-bold bg-white text-deepBlue px-2 py-0.5 rounded border border-gray-200">
+                Textil & Uniformes
+              </span>
+            </div>
+
+            <!-- Quote Text -->
+            <p class="text-xs sm:text-sm text-gray-700 leading-relaxed italic mb-6">
+              “El cotizador rápido y la ficha de pedido monocromática en PDF nos ordenaron el depósito. Los clientes envían el pedido ordenado por talle y curva por WhatsApp y en facturación lo imprimen sin errores. Un antes y un después en nuestra operatoria.”
+            </p>
+          </div>
+
+          <!-- Author Info -->
+          <div class="pt-4 border-t border-gray-200/80 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-deepBlue text-electricCyan font-black text-sm flex items-center justify-center shrink-0">
+              LB
+            </div>
+            <div>
+              <div class="text-xs font-bold text-deepBlue">Lucas D. Benítez</div>
+              <div class="text-[11px] text-gray-500 font-medium">Jefe de Ventas • Uniformes del Sur</div>
+              <div class="text-[10px] text-electricCyan font-semibold">Fabricante & Mayorista</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- TRUST STATS BAR -->
+      <div class="bg-deepBlue text-white rounded-2xl p-8 border border-electricCyan/20 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div>
+          <div class="text-3xl font-black text-electricCyan mb-1">+150</div>
+          <div class="text-xs text-gray-300 font-medium">Catálogos Activos en Producción</div>
+        </div>
+        <div>
+          <div class="text-3xl font-black text-electricCyan mb-1">24-48h</div>
+          <div class="text-xs text-gray-300 font-medium">Tiempo Promedio de Actualización</div>
+        </div>
+        <div>
+          <div class="text-3xl font-black text-electricCyan mb-1">100%</div>
+          <div class="text-xs text-gray-300 font-medium">Optimizado para Celulares & WhatsApp</div>
+        </div>
+        <div>
+          <div class="text-3xl font-black text-electricCyan mb-1">+12</div>
+          <div class="text-xs text-gray-300 font-medium">Rubros Comerciales & Mayoristas</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PREGUNTAS FRECUENTES (FAQ) -->
+  <section id="faq" class="py-20 px-4 bg-lightGray border-t border-gray-200">
+    <div class="max-w-4xl mx-auto">
+      
+      <!-- SECTION HEADER -->
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <span class="text-electricCyan font-black uppercase text-xs tracking-wider bg-deepBlue px-3 py-1 rounded-full">Preguntas Frecuentes</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-deepBlue mt-3 mb-4">Todo lo que necesitas saber sobre Vende Más</h2>
+        <p class="text-gray-600 text-sm sm:text-base">Respuestas claras sobre mantenimiento continuo, formatos de entrega y estructuración comercial de precios B2B.</p>
+      </div>
+
+      <!-- FAQ ACCORDION LIST -->
+      <div class="space-y-4">
+
+        <!-- CATEGORÍA 1: MANTENIMIENTO DE CATÁLOGOS -->
+        <div class="pt-2 pb-1">
+          <div class="flex items-center gap-2 text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">
+            <i class="fas fa-tools text-electricCyan"></i>
+            <span>Mantenimiento & Actualizaciones</span>
+          </div>
+        </div>
+
+        <!-- FAQ Item 1 -->
+        <details class="group bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm transition hover:border-electricCyan/50" open>
+          <summary class="flex justify-between items-center cursor-pointer p-6 font-bold text-deepBlue select-none list-none text-base sm:text-lg">
+            <span class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-lg bg-deepBlue text-electricCyan flex items-center justify-center text-xs font-black shrink-0">01</span>
+              <span>¿Cómo funciona el servicio de mantenimiento y actualización de precios?</span>
+            </span>
+            <i class="fas fa-chevron-down text-deepBlue text-sm transition-transform duration-300 group-open:rotate-180 group-open:text-electricCyan shrink-0 ml-4"></i>
+          </summary>
+          <div class="px-6 pb-6 pt-2 text-sm text-gray-600 border-t border-gray-100 leading-relaxed space-y-2">
+            <p>
+              Sabemos que en el comercio mayorista y distribuidoras los costos cambian con frecuencia. Con nuestro plan de mantenimiento no tienes que rediseñar tu catálogo desde cero:
+            </p>
+            <ul class="list-disc list-inside space-y-1 text-gray-700 pl-2">
+              <li><strong>Actualizaciones periódicas:</strong> Puedes enviarnos tus modificaciones quincenales o mensuales de precios por WhatsApp, Excel o PDF de proveedores.</li>
+              <li><strong>Altas y bajas inmediatas:</strong> Añadimos nuevos lanzamientos y removemos productos discontinuados o temporalmente sin stock.</li>
+              <li><strong>Tiempos de entrega ágiles:</strong> Las actualizaciones se aplican en <strong>24 a 48 horas hábiles</strong>, garantizando que tu equipo de ventas y clientes siempre tengan las listas oficiales vigentes.</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- FAQ Item 2 -->
+        <details class="group bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm transition hover:border-electricCyan/50">
+          <summary class="flex justify-between items-center cursor-pointer p-6 font-bold text-deepBlue select-none list-none text-base sm:text-lg">
+            <span class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-lg bg-deepBlue text-electricCyan flex items-center justify-center text-xs font-black shrink-0">02</span>
+              <span>¿Qué información debo enviar para actualizar o crear mi catálogo?</span>
+            </span>
+            <i class="fas fa-chevron-down text-deepBlue text-sm transition-transform duration-300 group-open:rotate-180 group-open:text-electricCyan shrink-0 ml-4"></i>
+          </summary>
+          <div class="px-6 pb-6 pt-2 text-sm text-gray-600 border-t border-gray-100 leading-relaxed">
+            <p>
+              Aceptamos la información en el formato que te resulte más cómodo: planillas de Excel, archivos CSV, listas de precios en PDF de fábrica o incluso fotos claras de tus listas físicas. Nuestro equipo se encarga de estandarizar los códigos SKU, normalizar descripciones de bulto, clasificar por categorías y dar formato estético con la identidad visual oficial de Vende Más.
+            </p>
+          </div>
+        </details>
+
+        <!-- CATEGORÍA 2: FORMATOS & ENTREGA -->
+        <div class="pt-6 pb-1">
+          <div class="flex items-center gap-2 text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">
+            <i class="fas fa-file-invoice text-electricCyan"></i>
+            <span>Formatos & Entrega de Archivos</span>
+          </div>
+        </div>
+
+        <!-- FAQ Item 3 -->
+        <details class="group bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm transition hover:border-electricCyan/50">
+          <summary class="flex justify-between items-center cursor-pointer p-6 font-bold text-deepBlue select-none list-none text-base sm:text-lg">
+            <span class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-lg bg-deepBlue text-electricCyan flex items-center justify-center text-xs font-black shrink-0">03</span>
+              <span>¿En qué formatos recibo mi catálogo y cómo se entrega a los clientes?</span>
+            </span>
+            <i class="fas fa-chevron-down text-deepBlue text-sm transition-transform duration-300 group-open:rotate-180 group-open:text-electricCyan shrink-0 ml-4"></i>
+          </summary>
+          <div class="px-6 pb-6 pt-2 text-sm text-gray-600 border-t border-gray-100 leading-relaxed space-y-2">
+            <p>
+              Entregamos una solución dual pensada para la dinámica comercial real:
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
+              <div class="bg-gray-50 p-4 rounded-xl border border-gray-100">
+                <div class="text-deepBlue font-bold text-sm mb-1"><i class="fas fa-globe text-electricCyan mr-2"></i>1. Enlace Web Interactivo</div>
+                <p class="text-xs text-gray-600">Una URL liviana y optimizada para celulares. Tu cliente solo toca el enlace y visualiza productos, fotos y buscador sin descargar megabytes a su teléfono.</p>
+              </div>
+              <div class="bg-gray-50 p-4 rounded-xl border border-gray-100">
+                <div class="text-deepBlue font-bold text-sm mb-1"><i class="fas fa-file-pdf text-electricCyan mr-2"></i>2. PDF Comercial Liviano</div>
+                <p class="text-xs text-gray-600">Documento PDF vectorizado de alta resolución con compresión inteligente, ideal para adjuntar por WhatsApp, enviar por correo o imprimir en alta calidad.</p>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <!-- FAQ Item 4 -->
+        <details class="group bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm transition hover:border-electricCyan/50">
+          <summary class="flex justify-between items-center cursor-pointer p-6 font-bold text-deepBlue select-none list-none text-base sm:text-lg">
+            <span class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-lg bg-deepBlue text-electricCyan flex items-center justify-center text-xs font-black shrink-0">04</span>
+              <span>¿Mis clientes o viajantes necesitan instalar alguna app especial?</span>
+            </span>
+            <i class="fas fa-chevron-down text-deepBlue text-sm transition-transform duration-300 group-open:rotate-180 group-open:text-electricCyan shrink-0 ml-4"></i>
+          </summary>
+          <div class="px-6 pb-6 pt-2 text-sm text-gray-600 border-t border-gray-100 leading-relaxed">
+            <p>
+              <strong>No, en absoluto.</strong> Eliminamos cualquier fricción tecnológica. La versión web interactiva funciona directamente en cualquier navegador (Chrome, Safari, Edge) en teléfonos Android, iPhones o computadoras. Tus clientes no tienen que registrarse, ni instalar aplicaciones, ni aprender sistemas complejos: hacen clic y compran.
+            </p>
+          </div>
+        </details>
+
+        <!-- CATEGORÍA 3: ESTRUCTURA DE PRECIOS B2B -->
+        <div class="pt-6 pb-1">
+          <div class="flex items-center gap-2 text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">
+            <i class="fas fa-tags text-electricCyan"></i>
+            <span>Estructura de Precios B2B & Escalas</span>
+          </div>
+        </div>
+
+        <!-- FAQ Item 5 -->
+        <details class="group bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm transition hover:border-electricCyan/50">
+          <summary class="flex justify-between items-center cursor-pointer p-6 font-bold text-deepBlue select-none list-none text-base sm:text-lg">
+            <span class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-lg bg-deepBlue text-electricCyan flex items-center justify-center text-xs font-black shrink-0">05</span>
+              <span>¿Cómo se estructuran los precios mayoristas, bultos cerrados y escalas de volumen?</span>
+            </span>
+            <i class="fas fa-chevron-down text-deepBlue text-sm transition-transform duration-300 group-open:rotate-180 group-open:text-electricCyan shrink-0 ml-4"></i>
+          </summary>
+          <div class="px-6 pb-6 pt-2 text-sm text-gray-600 border-t border-gray-100 leading-relaxed space-y-2">
+            <p>
+              El diseño de Vende Más está pensado específicamente para la venta B2B y mayorista. En cada ficha de producto organizamos:
+            </p>
+            <ul class="list-disc list-inside space-y-1 text-gray-700 pl-2">
+              <li><strong>Precio Minorista Sugerido (PVP):</strong> Referencia visible para que el comercio conozca su margen de reventa.</li>
+              <li><strong>Precio Mayorista por Unidad y Bulto:</strong> Especificación clara del costo por caja o pallet.</li>
+              <li><strong>Mínimo de Compra (MOQ):</strong> Cantidad mínima exigida (ej. <em>"Mínimo: 6 unidades"</em>).</li>
+              <li><strong>Escalas por Volumen:</strong> Descuentos automáticos por escala (ej. <em>"-10% llevando 3 o más bultos"</em>).</li>
+              <li><strong>Código SKU:</strong> Para que tanto el comprador como tu depósito identifiquen con precisión el artículo sin confusiones.</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- FAQ Item 6 -->
+        <details class="group bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm transition hover:border-electricCyan/50">
+          <summary class="flex justify-between items-center cursor-pointer p-6 font-bold text-deepBlue select-none list-none text-base sm:text-lg">
+            <span class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-lg bg-deepBlue text-electricCyan flex items-center justify-center text-xs font-black shrink-0">06</span>
+              <span>¿Puedo tener un catálogo público sin precios y otro exclusivo para mayoristas?</span>
+            </span>
+            <i class="fas fa-chevron-down text-deepBlue text-sm transition-transform duration-300 group-open:rotate-180 group-open:text-electricCyan shrink-0 ml-4"></i>
+          </summary>
+          <div class="px-6 pb-6 pt-2 text-sm text-gray-600 border-t border-gray-100 leading-relaxed">
+            <p>
+              Sí, es una práctica muy común entre nuestros clientes distribuidores y fabricantes. Diseñamos una <strong>versión institucional pública</strong> (con fotografías y fichas técnicas pero sin precios para difusión abierta en redes) y una <strong>versión comercial privada</strong> (con lista mayorista, condiciones de pago y mínimos) para enviar exclusivamente a revendedores calificados.
+            </p>
+          </div>
+        </details>
+
+        <!-- FAQ Item 7 -->
+        <details class="group bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm transition hover:border-electricCyan/50">
+          <summary class="flex justify-between items-center cursor-pointer p-6 font-bold text-deepBlue select-none list-none text-base sm:text-lg">
+            <span class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-lg bg-deepBlue text-electricCyan flex items-center justify-center text-xs font-black shrink-0">07</span>
+              <span>¿Cómo se generan los pedidos cuando el cliente elige productos?</span>
+            </span>
+            <i class="fas fa-chevron-down text-deepBlue text-sm transition-transform duration-300 group-open:rotate-180 group-open:text-electricCyan shrink-0 ml-4"></i>
+          </summary>
+          <div class="px-6 pb-6 pt-2 text-sm text-gray-600 border-t border-gray-100 leading-relaxed">
+            <p>
+              Cada producto y el cotizador incorporan un botón de contacto directo que genera un mensaje preformateado para WhatsApp. El mensaje detalla: <em>Código SKU, Nombre del producto, Cantidad solicitada, Escala aplicada y Total estimado</em>. El mensaje llega al WhatsApp de tu equipo de ventas listo para confirmar stock y coordinar el despacho.
+            </p>
+          </div>
+        </details>
+
+      </div>
+
+      <!-- FAQ CTA BANNER -->
+      <div class="mt-12 bg-deepBlue rounded-2xl p-8 text-center text-white border border-electricCyan/30">
+        <h3 class="text-xl sm:text-2xl font-bold mb-2">¿Tienes una consulta específica sobre tu rubro?</h3>
+        <p class="text-xs sm:text-sm text-gray-300 max-w-xl mx-auto mb-6">
+          Escríbenos directamente por WhatsApp. Te asesoramos sin costo sobre cómo estructurar tu catálogo comercial para vender más.
+        </p>
+        <a href="https://wa.me/?text=Hola%20Vende%20M%C3%A1s!%20Tengo%20una%20consulta%20espec%C3%ADfica%20sobre%20el%20armado%20de%20mi%20cat%C3%A1logo%20comercial." target="_blank" class="pulse-btn inline-flex items-center gap-2.5 bg-electricCyan text-deepBlue font-black px-7 py-3.5 rounded-xl text-sm hover:brightness-105 transition shadow-lg">
+          <i class="fab fa-whatsapp pulse-icon text-xl text-deepBlue"></i>
+          <span>Consultar con un Asesor Comercial</span>
         </a>
       </div>
 
@@ -379,7 +981,305 @@
     <div class="max-w-7xl mx-auto pt-8 border-t border-gray-800/80 text-center text-xs text-gray-500">
       <p>© 2026 Vende Más — Catálogos. Todos los derechos reservados.</p>
     </div>
-  </footer>
+  <!-- MODAL: PORTAL DE CLIENTES & ALOJAMIENTO DE CUENTAS -->
+  <div id="clientPortalModal" class="fixed inset-0 bg-deepBlue/80 backdrop-blur-sm z-[99999] hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-xl w-full shadow-2xl overflow-hidden border border-gray-200 animate-in fade-in zoom-in duration-200">
+      
+      <!-- MODAL HEADER -->
+      <div class="bg-deepBlue p-6 text-white flex justify-between items-center border-b border-electricCyan/20">
+        <div class="flex items-center gap-3">
+          <div class="badge-vc px-2.5 py-1 rounded text-white text-base">V+C</div>
+          <div>
+            <h3 class="text-lg font-black leading-tight">Portal de Clientes</h3>
+            <p class="text-xs text-electricCyan font-medium">Gestión de Catálogos & Actualizaciones</p>
+          </div>
+        </div>
+        <button onclick="closeClientPortal()" class="text-gray-300 hover:text-white text-xl p-1">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <!-- PORTAL TABS -->
+      <div class="flex border-b border-gray-200 bg-gray-50 text-xs font-bold text-gray-600">
+        <button id="tabBtnLogin" onclick="switchPortalTab('login')" class="flex-1 py-3.5 border-b-2 border-deepBlue text-deepBlue font-black">
+          Iniciar Sesión
+        </button>
+        <button id="tabBtnRegister" onclick="switchPortalTab('register')" class="flex-1 py-3.5 border-b-2 border-transparent hover:text-deepBlue">
+          Solicitar Cuenta
+        </button>
+        <button id="tabBtnDashboard" onclick="switchPortalTab('dashboard')" class="flex-1 py-3.5 border-b-2 border-transparent text-emerald-700 bg-emerald-50/50 hover:bg-emerald-50 font-bold">
+          <i class="fas fa-bolt text-emerald-600 mr-1"></i> Panel Demo
+        </button>
+      </div>
+
+      <!-- TAB 1: LOGIN -->
+      <div id="portalTabLogin" class="p-6">
+        <p class="text-xs text-gray-500 mb-6">Ingresa con tu correo corporativo o ID de cliente asignado para administrar tu catálogo.</p>
+        
+        <form onsubmit="event.preventDefault(); switchPortalTab('dashboard');" class="space-y-4">
+          <div>
+            <label class="block text-xs font-bold text-gray-700 mb-1">Correo Electrónico o ID de Empresa:</label>
+            <input type="text" value="distribuidora@delplatagourmet.com" class="w-full bg-lightGray border border-gray-300 rounded-xl p-3 text-sm text-deepBlue focus:outline-none focus:border-electricCyan font-medium" placeholder="ej: ventas@miempresa.com" required>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-gray-700 mb-1">Contraseña o PIN de Catálogo:</label>
+            <input type="password" value="••••••••" class="w-full bg-lightGray border border-gray-300 rounded-xl p-3 text-sm text-deepBlue focus:outline-none focus:border-electricCyan font-medium" required>
+          </div>
+
+          <button type="submit" class="w-full bg-deepBlue hover:bg-opacity-95 text-white font-bold py-3.5 rounded-xl text-sm transition shadow-md">
+            Ingresar a Mi Catálogo
+          </button>
+        </form>
+
+        <div class="mt-6 pt-6 border-t border-gray-200 text-center">
+          <span class="text-xs text-gray-500 block mb-3">¿Quieres ver cómo funciona el panel de un cliente?</span>
+          <button onclick="switchPortalTab('dashboard')" class="inline-flex items-center gap-2 bg-electricCyan/15 hover:bg-electricCyan/25 text-deepBlue border border-electricCyan/40 font-bold px-4 py-2 rounded-xl text-xs transition">
+            <i class="fas fa-eye text-deepBlue"></i>
+            <span>Ver Panel de Administración Demo (1 Clic)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- TAB 2: REGISTER -->
+      <div id="portalTabRegister" class="p-6 hidden">
+        <p class="text-xs text-gray-500 mb-6">Completa tus datos para crear la cuenta de tu empresa y publicar tu catálogo con el estándar Vende Más.</p>
+        
+        <form onsubmit="submitAccountRequest(event)" class="space-y-4">
+          <div>
+            <label class="block text-xs font-bold text-gray-700 mb-1">Nombre de la Distribuidora o Marca:</label>
+            <input id="regCompany" type="text" class="w-full bg-lightGray border border-gray-300 rounded-xl p-3 text-sm text-deepBlue focus:outline-none focus:border-electricCyan font-medium" placeholder="ej: Distribuidora Central S.A." required>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-gray-700 mb-1">Rubro Principal:</label>
+            <input id="regSector" type="text" class="w-full bg-lightGray border border-gray-300 rounded-xl p-3 text-sm text-deepBlue focus:outline-none focus:border-electricCyan font-medium" placeholder="ej: Alimentos, Ferretería, Repuestos, Cosmética" required>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-gray-700 mb-1">WhatsApp Comercial:</label>
+            <input id="regWhatsApp" type="tel" class="w-full bg-lightGray border border-gray-300 rounded-xl p-3 text-sm text-deepBlue focus:outline-none focus:border-electricCyan font-medium" placeholder="+54 9 11 0000-0000" required>
+          </div>
+
+          <button type="submit" class="w-full bg-electricCyan text-deepBlue font-black py-3.5 rounded-xl text-sm hover:brightness-105 transition shadow-md">
+            Solicitar Alta de Cuenta por WhatsApp
+          </button>
+        </form>
+      </div>
+
+      <!-- TAB 3: CLIENT DASHBOARD -->
+      <div id="portalTabDashboard" class="p-6 hidden space-y-6 max-h-[75vh] overflow-y-auto">
+        
+        <!-- CLIENT BADGE -->
+        <div class="bg-deepBlue p-5 rounded-2xl text-white flex justify-between items-center">
+          <div>
+            <span class="text-[10px] text-electricCyan font-bold uppercase tracking-wider">Cliente Activo</span>
+            <h4 class="text-base font-black text-white">Distribuidora Del Plata Gourmet</h4>
+            <div class="text-xs text-gray-300 mt-0.5">Plan Mayorista Pro • Mantenimiento Mensual</div>
+          </div>
+          <div class="bg-emerald-500/20 border border-emerald-400 text-emerald-300 px-2.5 py-1 rounded-lg text-xs font-bold flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>Al Día</span>
+          </div>
+        </div>
+
+        <!-- STATS -->
+        <div class="grid grid-cols-3 gap-3 text-center">
+          <div class="bg-lightGray p-3 rounded-xl border border-gray-200">
+            <div class="text-xl font-black text-deepBlue">48</div>
+            <div class="text-[10px] text-gray-500 font-medium">Artículos Activos</div>
+          </div>
+          <div class="bg-lightGray p-3 rounded-xl border border-gray-200">
+            <div class="text-xl font-black text-deepBlue">1.480</div>
+            <div class="text-[10px] text-gray-500 font-medium">Visitas este Mes</div>
+          </div>
+          <div class="bg-lightGray p-3 rounded-xl border border-gray-200">
+            <div class="text-xl font-black text-emerald-700">24h</div>
+            <div class="text-[10px] text-gray-500 font-medium">SLA Actualización</div>
+          </div>
+        </div>
+
+        <!-- ACTIONS -->
+        <div class="space-y-3">
+          <h5 class="text-xs font-bold text-gray-700 uppercase tracking-wider">Acciones de tu Catálogo</h5>
+          
+          <!-- SUBIR PRECIOS -->
+          <div class="border-2 border-dashed border-gray-300 rounded-2xl p-4 text-center hover:border-electricCyan transition bg-gray-50">
+            <i class="fas fa-file-excel text-emerald-600 text-2xl mb-2"></i>
+            <div class="text-xs font-bold text-deepBlue">Subir Nueva Lista de Precios</div>
+            <p class="text-[11px] text-gray-500 mb-3">Arrastra tu archivo Excel, CSV o foto de lista de fábrica.</p>
+            <input type="file" id="priceFileInput" onchange="handleFileUpload(event)" class="hidden">
+            <button onclick="document.getElementById('priceFileInput').click()" class="bg-deepBlue hover:bg-opacity-90 text-white font-bold px-4 py-2 rounded-lg text-xs transition">
+              Seleccionar Archivo
+            </button>
+            <div id="fileUploadNotice" class="text-xs font-bold text-emerald-700 mt-2 hidden"></div>
+          </div>
+
+          <!-- LINKS & PDF -->
+          <div class="grid grid-cols-2 gap-3">
+            <button onclick="copyCatalogLink()" class="p-3 bg-lightGray hover:bg-gray-200 border border-gray-300 rounded-xl text-left transition">
+              <div class="text-xs font-bold text-deepBlue flex items-center gap-1.5">
+                <i class="fas fa-link text-electricCyan"></i> Copiar Enlace
+              </div>
+              <div class="text-[10px] text-gray-500 mt-0.5">Para enviar por WhatsApp</div>
+            </button>
+
+            <a href="https://wa.me/?text=Hola%20Vende%20M%C3%A1s!%20Necesito%20el%20PDF%20actualizado%20de%20mi%20cat%C3%A1logo." target="_blank" class="p-3 bg-lightGray hover:bg-gray-200 border border-gray-300 rounded-xl text-left transition block">
+              <div class="text-xs font-bold text-deepBlue flex items-center gap-1.5">
+                <i class="fas fa-file-pdf text-red-500"></i> Descargar PDF
+              </div>
+              <div class="text-[10px] text-gray-500 mt-0.5">Versión para imprimir</div>
+            </a>
+          </div>
+        </div>
+
+        <div class="pt-2 text-center">
+          <button onclick="switchPortalTab('login')" class="text-xs text-gray-500 hover:text-red-600 font-semibold">
+            Cerrar sesión de cliente
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT: LOGICA INTERACTIVA, MONEDAS Y CALCULADORA -->
+  <script>
+    let currentCurrency = 'ARS';
+
+    const pricingData = {
+      ARS: {
+        express: '$ 45.000',
+        pro: '$ 95.000',
+        maint: '$ 25.000',
+        symbol: '$',
+        basePro: 95000,
+        baseMaint: 25000,
+        biweeklyMaint: 40000
+      },
+      USD: {
+        express: 'USD 45',
+        pro: 'USD 95',
+        maint: 'USD 25',
+        symbol: 'USD',
+        basePro: 95,
+        baseMaint: 25,
+        biweeklyMaint: 40
+      }
+    };
+
+    function setCurrency(curr) {
+      currentCurrency = curr;
+      const data = pricingData[curr];
+
+      document.getElementById('priceExpress').innerText = data.express;
+      document.getElementById('pricePro').innerText = data.pro;
+      document.getElementById('priceMaint').innerText = data.maint;
+
+      const btnARS = document.getElementById('btnCurrencyARS');
+      const btnUSD = document.getElementById('btnCurrencyUSD');
+
+      if (curr === 'ARS') {
+        btnARS.className = "px-5 py-2 rounded-lg text-xs font-bold transition bg-deepBlue text-white shadow-sm";
+        btnUSD.className = "px-5 py-2 rounded-lg text-xs font-bold transition text-gray-700 hover:text-deepBlue";
+      } else {
+        btnUSD.className = "px-5 py-2 rounded-lg text-xs font-bold transition bg-deepBlue text-white shadow-sm";
+        btnARS.className = "px-5 py-2 rounded-lg text-xs font-bold transition text-gray-700 hover:text-deepBlue";
+      }
+
+      calculateBudget();
+    }
+
+    function calculateBudget() {
+      const products = parseInt(document.getElementById('calcProducts').value);
+      const maint = document.getElementById('calcMaint').value;
+      const data = pricingData[currentCurrency];
+
+      let designCost = data.basePro;
+      if (products === 50) designCost = data.basePro * 0.55;
+      else if (products === 150) designCost = data.basePro;
+      else if (products === 300) designCost = data.basePro * 1.5;
+      else if (products === 600) designCost = data.basePro * 2.2;
+
+      let maintCost = 0;
+      let maintLabel = '';
+      if (maint === 'monthly') {
+        maintCost = data.baseMaint;
+        maintLabel = ` + ${data.symbol} ${Math.round(maintCost)}/mes`;
+      } else if (maint === 'biweekly') {
+        maintCost = data.biweeklyMaint;
+        maintLabel = ` + ${data.symbol} ${Math.round(maintCost)}/quincena`;
+      }
+
+      const displayStr = `${data.symbol} ${Math.round(designCost).toLocaleString()} diseño${maintLabel}`;
+      document.getElementById('calcResultDisplay').innerText = displayStr;
+
+      const msg = `Hola Vende Más! Calculé un presupuesto en su web:\n• Productos: ${products}\n• Mantenimiento: ${maint}\n• Estimado: ${displayStr}\nQuisiera coordinar el inicio.`;
+      document.getElementById('calcWhatsAppBtn').href = `https://wa.me/?text=${encodeURIComponent(msg)}`;
+    }
+
+    // CLIENT PORTAL MODAL CONTROLS
+    function openClientPortal() {
+      document.getElementById('clientPortalModal').classList.remove('hidden');
+    }
+
+    function closeClientPortal() {
+      document.getElementById('clientPortalModal').classList.add('hidden');
+    }
+
+    function switchPortalTab(tab) {
+      document.getElementById('portalTabLogin').classList.add('hidden');
+      document.getElementById('portalTabRegister').classList.add('hidden');
+      document.getElementById('portalTabDashboard').classList.add('hidden');
+
+      const btnLogin = document.getElementById('tabBtnLogin');
+      const btnRegister = document.getElementById('tabBtnRegister');
+      const btnDashboard = document.getElementById('tabBtnDashboard');
+
+      btnLogin.className = "flex-1 py-3.5 border-b-2 border-transparent hover:text-deepBlue";
+      btnRegister.className = "flex-1 py-3.5 border-b-2 border-transparent hover:text-deepBlue";
+      btnDashboard.className = "flex-1 py-3.5 border-b-2 border-transparent hover:text-deepBlue";
+
+      if (tab === 'login') {
+        document.getElementById('portalTabLogin').classList.remove('hidden');
+        btnLogin.className = "flex-1 py-3.5 border-b-2 border-deepBlue text-deepBlue font-black";
+      } else if (tab === 'register') {
+        document.getElementById('portalTabRegister').classList.remove('hidden');
+        btnRegister.className = "flex-1 py-3.5 border-b-2 border-deepBlue text-deepBlue font-black";
+      } else if (tab === 'dashboard') {
+        document.getElementById('portalTabDashboard').classList.remove('hidden');
+        btnDashboard.className = "flex-1 py-3.5 border-b-2 border-emerald-600 text-emerald-800 font-black bg-emerald-50/70";
+      }
+    }
+
+    function submitAccountRequest(e) {
+      e.preventDefault();
+      const comp = document.getElementById('regCompany').value;
+      const sec = document.getElementById('regSector').value;
+      const tel = document.getElementById('regWhatsApp').value;
+      const msg = `Hola Vende Más! Quisiera dar de alta una cuenta comercial en el Portal de Clientes para:\n• Empresa: ${comp}\n• Rubro: ${sec}\n• WhatsApp: ${tel}\nFavor de enviarme las instrucciones de acceso.`;
+      window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank');
+      closeClientPortal();
+    }
+
+    function handleFileUpload(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const notice = document.getElementById('fileUploadNotice');
+        notice.innerText = `✓ Archivo cargado: "${file.name}". Enviando a procesamiento para actualización en 24h.`;
+        notice.classList.remove('hidden');
+      }
+    }
+
+    function copyCatalogLink() {
+      navigator.clipboard.writeText(window.location.href);
+      alert('¡Enlace de catálogo copiado al portapapeles! Listo para enviar por WhatsApp.');
+    }
+
+    // Initialize calculator
+    calculateBudget();
+  </script>
 
 </body>
 </html>
